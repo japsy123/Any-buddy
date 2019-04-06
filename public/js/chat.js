@@ -1,15 +1,17 @@
 const socket = io();
+const messageForm = document.querySelector("#message-form") 
+const messageInput = document.querySelector("input")
+const messageLocation =document.querySelector("#myLocation");
 
-
-document.querySelector("#message-form").addEventListener("submit", function(e){
+messageForm.addEventListener("submit", function(e){
 
     e.preventDefault();
-    const message = document.querySelector("input").value;
+    const message = messageInput.value;
      console.log("Clicked")
     socket.emit("sendMessage", message)
 })
 
-document.querySelector("#myLocation").addEventListener("click", function(e){
+messageLocation.addEventListener("click", function(e){
 
     e.preventDefault();
     if(!navigator.geolocation){
