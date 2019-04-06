@@ -11,8 +11,14 @@ const io = scoketio(server);
 
 app.use(express.static(publicDir))
 
-io.on('connection', () => {
+io.on('connection', (socket) => {
     console.log("New web socket connection")
+
+    socket.on("sendMessage", (message) => {
+        console.log(message)
+        io.emit("message",message);
+    })
+    
 })
 server.listen(port, (req,res) => {
     console.log("Server is listening!!")
