@@ -8,10 +8,12 @@ messageForm.addEventListener("submit", function(e){
 
     e.preventDefault();
     const message = messageInput.value;
-    messageFromButoon.setAttribute("disabled","disabled")
+    // messageFromButoon.setAttribute("disabled","disabled")
      console.log("Clicked")
     socket.emit("sendMessage", message, (error)=> {
 
+        messageInput.value = "";
+        messageInput.focus();
         if(error) {
             return console.log(error)
         }
