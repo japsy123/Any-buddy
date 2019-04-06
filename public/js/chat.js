@@ -1,7 +1,7 @@
 const socket = io();
 
 
-document.querySelector("#sendMessage").addEventListener("click", function(e){
+document.querySelector("#message-form").addEventListener("submit", function(e){
 
     e.preventDefault();
     const message = document.querySelector("input").value;
