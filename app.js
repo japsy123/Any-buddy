@@ -19,7 +19,16 @@ io.on('connection', (socket) => {
         io.emit("message",message);
     })
     
+    socket.on("sendLocations", (cords)=>{
+        console.log(cords.lat)
+        io.emit("message", `
+            Location of user 
+            Longitude ${cords.lat} 
+            Latitude ${cords.long}`)
+    })
 })
+
+
 server.listen(port, (req,res) => {
     console.log("Server is listening!!")
 })
