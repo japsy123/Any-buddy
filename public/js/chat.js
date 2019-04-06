@@ -2,13 +2,22 @@ const socket = io();
 const messageForm = document.querySelector("#message-form") 
 const messageInput = document.querySelector("input")
 const messageLocation =document.querySelector("#myLocation");
+const messageFromButoon = messageForm.querySelector("button");
 
 messageForm.addEventListener("submit", function(e){
 
     e.preventDefault();
     const message = messageInput.value;
+    messageFromButoon.setAttribute("disabled","disabled")
      console.log("Clicked")
-    socket.emit("sendMessage", message)
+    socket.emit("sendMessage", message, (error)=> {
+
+        if(error) {
+            return console.log(error)
+        }
+        console.log("Delivered")
+
+    })
 })
 
 messageLocation.addEventListener("click", function(e){

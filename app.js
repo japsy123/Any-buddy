@@ -14,9 +14,10 @@ app.use(express.static(publicDir))
 io.on('connection', (socket) => {
     console.log("New web socket connection")
 
-    socket.on("sendMessage", (message) => {
+    socket.on("sendMessage", (message, callback) => {
         console.log(message)
         io.emit("message",message);
+        callback();
     })
     
     socket.on("sendLocations", (cords)=>{
