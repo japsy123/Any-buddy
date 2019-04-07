@@ -22,10 +22,9 @@ io.on('connection', (socket) => {
     
     socket.on("sendLocations", (cords)=>{
         console.log(cords.lat)
-        io.emit("message", `
-            Location of user 
-            Longitude ${cords.lat} 
-            Latitude ${cords.long}`)
+        io.emit("locationMessage", `
+            http://google.com/maps?q=${cords.lat},${cords.long}`)
+           
     })
 })
 

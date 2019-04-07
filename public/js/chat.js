@@ -1,3 +1,5 @@
+
+
 const socket = io();
 const messageForm = document.querySelector("#message-form") 
 const messageInput = document.querySelector("input")
@@ -14,7 +16,9 @@ socket.on('message', (message) => {
     messages.insertAdjacentHTML('beforeend', html)
 })
 
-
+socket.on("locationMessage", (url) => {
+    console.log(url)
+})
 messageForm.addEventListener("submit", function(e){
 
     e.preventDefault();
