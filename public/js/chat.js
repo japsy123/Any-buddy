@@ -10,15 +10,17 @@ const geolocation = document.querySelector("#geo-template").innerHTML;
 socket.on('message', (message) => {
     console.log(message)
     const html = Mustache.render(messageTemplate, {
-        message: message.text
+        message: message.text,
+        createdAt: moment(message.createdAt).format('h:mm a')
     })
     messages.insertAdjacentHTML('beforeend', html)
 })
 
-socket.on("locationMessage", (url) => {
-    console.log(url)
+socket.on("locationMessage", (message) => {
     const html = Mustache.render(geolocation, {
-        url
+      url:message.url, 
+        createdAt: moment(message.createdAt).format('h:mm a'),
+
     })
     messages.insertAdjacentHTML('beforeend', html)
 

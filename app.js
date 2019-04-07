@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 const path = require("path");
 const scoketio = require("socket.io");
 const http = require("http");
-const {generateMessage} = require("./utils/messages");
+const {generateMessage, generateLocationMessage} = require("./utils/messages");
 
 const server = http.createServer(app);
 const publicDir = path.join(__dirname,"/public");
@@ -24,17 +24,15 @@ io.on('connection', (socket) => {
     
     socket.on("sendLocations", (cords)=>{
         console.log(cords.lat)
-        io.emit("locationMessage", `
-            http://google.com/maps?q=${cords.lat},${cords.long}`)
-           
-    })
+       
+        io.emit("locationMessage",generateLocationMessage(`http://google.com/maps?q=${cords.lat},${cords.long}`))
 
     socket.on("disconnect", ()=>{
         io.emit("message", generateMessage("User has left"))
     })
 })
 
-
+})
 server.listen(port, (req,res) => {
     console.log("Server is listening!!")
 })
