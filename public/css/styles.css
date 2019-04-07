@@ -59,7 +59,8 @@ button:disabled {
 /* Join Page Styles */
 
 .centered-form {
-    background: #333744;
+    /* background: #333744; */
+    background-image: linear-gradient( 135deg, #F05F57 10%, #360940 100%);
     width: 100vw;
     height: 100vh;   
     display: flex;

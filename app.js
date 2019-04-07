@@ -15,6 +15,15 @@ app.use(express.static(publicDir))
 io.on('connection', (socket) => {
     console.log("New web socket connection")
 
+    socket.on("join", ({username, room})=>{
+        console.log(username, room)
+        socket.join(room)
+        socket.emit("message",generateMessage(`Welcome ${username} to ${room}`))
+        socket.broadcast.to(room).emit("message",generateMessage(` ${username} has joined
+        `))
+
+    })
+
     socket.emit("message",generateMessage("Welcome"))
     socket.on("sendMessage", (message, callback) => {
         console.log(message)
