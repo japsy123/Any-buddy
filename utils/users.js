@@ -40,15 +40,41 @@ const removeUser = (id) => {
     }
 }
 
-addUser({
-    id: 22,
-    username: 'Andrew  ',
-    room: '  South Philly'
-})
 
-console.log(users)
+const getUser = (id) => {
 
-const removedUser = removeUser(22)
+    const user = users.find((user) => {
+        return user.id === id
+    })
 
-console.log(removedUser)
-console.log(users)
+    if(user){
+        return user;
+    } else {
+        return "no user";
+    }
+
+}
+
+const getUsersInRoom = (room) =>{
+
+    const getUsersInRoom = users.filter(user => user.room === room);
+
+    if(getUsersInRoom === []){
+        return "No users"
+    } else {
+        return getUsersInRoom;
+    }
+}
+// console.log(users)
+
+// const removedUser = removeUser(20)
+// console.log(removedUser)
+// console.log(users)
+
+module.exports = {
+    addUser,
+    removeUser,
+    getUser,
+    getUsersInRoom
+    
+}
